@@ -1,0 +1,48 @@
+dir -Path C:\TEMP\powershell_nov-master
+New-Item -Path C:\TEMP\powershell_nov-master\FSOassignment -ItemType Directory
+New-Item -Path C:\TEMP\powershell_nov-master\FSOassignment\a.docx -ItemType File
+New-Item -Path C:\TEMP\powershell_nov-master\FSOassignment\Folder2 -ItemType Directory
+Get-Help Move-Item  -examples
+Move-Item -Path C:\TEMP\powershell_nov-master\FSOassignment\*.txt -Destination C:\TEMP\powershell_nov-master\FSOassignment\Folder1
+Move-Item -Path C:\temp\powershell_nov-master\FSOassignment\Folder1\*.txt -Destination C:\temp\powershell_nov-master\FSOassignment\Folder2
+Set-Content C:\temp\powershell_nov-master\FSOassignment\Folder2\a.txt
+#how to move fies in a folder to another folder?
+
+$text = "Ram is well versed with powershell"
+Set-Content C:\temp\powershell_nov-master\FSOassignment\Folder2\a.txt 'hi how are you'
+Set-Content C:\temp\powershell_nov-master\FSOassignment\Folder2\b.txt "hello I'm fine"
+
+$a = Get-Content C:\temp\powershell_nov-master\FSOassignment\Folder2\a.txt
+$b = Get-Content C:\temp\powershell_nov-master\FSOassignment\Folder2\b.txt
+
+Add-Content C:\temp\powershell_nov-master\FSOassignment\Folder2\c.txt $a
+Add-Content C:\temp\powershell_nov-master\FSOassignment\Folder2\c.txt $b
+
+Get-Item -Path C:\temp ItemType -Itemtype File 
+
+
+$list = Get-ChildItem "C:\temp\powershell_nov-master\FSOassignment\Folder2" -Filter "*.txt"
+
+$list.Count
+
+$list = Get-ChildItem "C:\temp\powershell_nov-master\FSOassignment\Folder2" -Filter "*.txt"
+
+$list.Length
+
+$i=0
+while ($i -lt $list.Length){
+        
+      get-content  "C:\temp\powershell_nov-master\FSOassignment\Folder2\$list[$i]"
+        $i++
+
+}
+
+
+$files = Get-ChildItem "C:\temp\powershell_nov-master\FSOassignment\Folder2"
+for ($i=0; $i -lt $files.Count; $i++) {
+  
+    Get-Content $files[$i].FullName | Where-Object { !($_ -match 'step4' -or $_ -match 'step9') } 
+    #| Set-Content $outfile
+}
+
+
